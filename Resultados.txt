@@ -1,7 +1,46 @@
 
 i) Uma breve descrição do funcionamento e uso para quem quiser reproduzir.
 
-O projeto consiste em um sistema de monitoramento de temperatura e umidade utilizando o sensor DHT11 e o módulo ESP32. O ESP32 coleta dados do DHT11 e os exibe em um display LCD 16x2. Os dados são enviados a um broker MQTT (EMQX) para monitoramento em tempo real no aplicativo IoT MQTT Panel. Um cooler é ativado automaticamente se a temperatura ultrapassar 45°C, e o controle remoto do cooler pode ser realizado via o aplicativo tendo em mãos os hardwares citados, mais o código disponível e omodelo de montagem é possível reproduzir.
+Descrição do Projeto
+Componentes Utilizados:
+DHT11: Sensor de temperatura e umidade.
+ESP32: Microcontrolador com conectividade Wi-Fi.
+ProtoBoard: Para montagem do circuito.
+LED: Indicador visual.
+LCD: Display para mostrar dados de temperatura e umidade.
+Protocolo MQTT: Para comunicação com a aplicação.
+
+Funcionamento:
+Leitura dos Dados: O DHT11 mede a temperatura e a umidade do ambiente. O ESP32 lê esses dados através de uma das suas entradas digitais.
+Processamento: O ESP32 processa os dados recebidos do DHT11.
+Exibição Local: Os dados são exibidos em tempo real no LCD, mostrando a temperatura e a umidade.
+Indicação Visual: O LED pode ser usado para indicar diferentes estados, como sucesso na leitura dos dados ou problemas de conexão.
+Envio via MQTT: Utilizando a conectividade Wi-Fi do ESP32, os dados são enviados para um broker MQTT, onde podem ser acessados por uma aplicação externa.
+Passo a Passo para Reproduzir:
+
+Montagem do Hardware:
+
+Conecte o DHT11 ao ESP32 conforme o diagrama de pinos: geralmente VCC ao 3.3V, GND ao GND e o pino de dados a um dos pinos digitais do ESP32.
+Conecte o LCD ao ESP32 usando um adaptador I2C para simplificar a conexão.
+Conecte o LED ao ESP32, com um resistor em série para limitar a corrente.
+Monte todos os componentes na protoBoard.
+Configuração do Software:
+
+Instale o Arduino IDE e adicione a placa ESP32 na gerenciador de placas.
+Instale as bibliotecas necessárias: DHT sensor library, Adafruit Unified Sensor, Wire, LiquidCrystal_I2C, e PubSubClient para MQTT.
+Configure a rede Wi-Fi e o broker MQTT no código.
+
+Operação:
+Compile e faça o upload do código para o ESP32.
+Abra o monitor serial para verificar as mensagens de depuração.
+O LCD deve exibir a temperatura e a umidade.
+O LED indicará erros de leitura do sensor.
+Os dados serão enviados via MQTT para o broker configurado.
+
+Considerações Finais:
+Certifique-se de que todos os componentes estão corretamente conectados e funcionando.
+Verifique a configuração do broker MQTT e a rede Wi-Fi.
+Use uma aplicação cliente MQTT para monitorar os dados enviados pelo ESP32.
 
 
 ii) O software desenvolvido e a documentação de código.
